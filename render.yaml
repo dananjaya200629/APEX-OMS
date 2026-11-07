@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: apex-oms
+    runtime: docker
+    plan: starter
+    autoDeploy: true
+    healthCheckPath: /api/health
+    envVars:
+      - key: APEX_HOST
+        value: 0.0.0.0
+      - key: APEX_PORT
+        value: 10000
+      - key: APEX_DATA_DIR
+        value: /var/data
+      - key: APEX_COOKIE_SECURE
+        value: "true"
+      - key: APEX_OWNER_USERNAME
+        value: owner@apexholdings.lk
+      - key: APEX_OWNER_PASSWORD
+        sync: false
+    disk:
+      name: apex-oms-persistent-data
+      mountPath: /var/data
+      sizeGB: 10
